@@ -16,5 +16,11 @@ namespace Lab1
         {
             InitializeComponent();
         }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            tbPlainText.Text = string.Empty;
+            tbCipherText.Text = string.Empty;
+        }
     }
 }
