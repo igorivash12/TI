@@ -39,11 +39,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cmbTypesOfCipher = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnOpenFile = new System.Windows.Forms.Button();
+            this.btnSaveFile = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(621, 456);
+            this.btnClear.Location = new System.Drawing.Point(83, 456);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(170, 42);
             this.btnClear.TabIndex = 0;
@@ -53,7 +55,7 @@
             // 
             // btnDecipher
             // 
-            this.btnDecipher.Location = new System.Drawing.Point(353, 456);
+            this.btnDecipher.Location = new System.Drawing.Point(556, 456);
             this.btnDecipher.Name = "btnDecipher";
             this.btnDecipher.Size = new System.Drawing.Size(170, 42);
             this.btnDecipher.TabIndex = 1;
@@ -63,7 +65,7 @@
             // 
             // btnCipher
             // 
-            this.btnCipher.Location = new System.Drawing.Point(85, 456);
+            this.btnCipher.Location = new System.Drawing.Point(355, 456);
             this.btnCipher.Name = "btnCipher";
             this.btnCipher.Size = new System.Drawing.Size(170, 42);
             this.btnCipher.TabIndex = 2;
@@ -73,7 +75,7 @@
             // 
             // tbKey
             // 
-            this.tbKey.Location = new System.Drawing.Point(85, 394);
+            this.tbKey.Location = new System.Drawing.Point(83, 394);
             this.tbKey.Name = "tbKey";
             this.tbKey.Size = new System.Drawing.Size(170, 22);
             this.tbKey.TabIndex = 3;
@@ -84,22 +86,22 @@
             this.tbPlainText.Multiline = true;
             this.tbPlainText.Name = "tbPlainText";
             this.tbPlainText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbPlainText.Size = new System.Drawing.Size(400, 213);
+            this.tbPlainText.Size = new System.Drawing.Size(490, 213);
             this.tbPlainText.TabIndex = 4;
             // 
             // tbCipherText
             // 
-            this.tbCipherText.Location = new System.Drawing.Point(606, 112);
+            this.tbCipherText.Location = new System.Drawing.Point(713, 112);
             this.tbCipherText.Multiline = true;
             this.tbCipherText.Name = "tbCipherText";
             this.tbCipherText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbCipherText.Size = new System.Drawing.Size(400, 213);
+            this.tbCipherText.Size = new System.Drawing.Size(490, 213);
             this.tbCipherText.TabIndex = 5;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(603, 70);
+            this.label1.Location = new System.Drawing.Point(710, 70);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(156, 16);
             this.label1.TabIndex = 6;
@@ -117,7 +119,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(82, 375);
+            this.label3.Location = new System.Drawing.Point(80, 375);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 16);
             this.label3.TabIndex = 8;
@@ -129,7 +131,7 @@
             this.cmbTypesOfCipher.Items.AddRange(new object[] {
             "Шифр Виженера (Рус.)",
             "Столбцовый метод (Англ.)"});
-            this.cmbTypesOfCipher.Location = new System.Drawing.Point(538, 392);
+            this.cmbTypesOfCipher.Location = new System.Drawing.Point(320, 394);
             this.cmbTypesOfCipher.Name = "cmbTypesOfCipher";
             this.cmbTypesOfCipher.Size = new System.Drawing.Size(253, 24);
             this.cmbTypesOfCipher.TabIndex = 9;
@@ -137,17 +139,39 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(535, 373);
+            this.label4.Location = new System.Drawing.Point(317, 375);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(118, 16);
             this.label4.TabIndex = 10;
             this.label4.Text = "Тип шифрования";
             // 
+            // btnOpenFile
+            // 
+            this.btnOpenFile.Location = new System.Drawing.Point(832, 456);
+            this.btnOpenFile.Name = "btnOpenFile";
+            this.btnOpenFile.Size = new System.Drawing.Size(170, 42);
+            this.btnOpenFile.TabIndex = 11;
+            this.btnOpenFile.Text = "Открыть файл";
+            this.btnOpenFile.UseVisualStyleBackColor = true;
+            this.btnOpenFile.Click += new System.EventHandler(this.btnOpenFile_Click);
+            // 
+            // btnSaveFile
+            // 
+            this.btnSaveFile.Location = new System.Drawing.Point(1033, 456);
+            this.btnSaveFile.Name = "btnSaveFile";
+            this.btnSaveFile.Size = new System.Drawing.Size(170, 42);
+            this.btnSaveFile.TabIndex = 12;
+            this.btnSaveFile.Text = "Сохранить";
+            this.btnSaveFile.UseVisualStyleBackColor = true;
+            this.btnSaveFile.Click += new System.EventHandler(this.btnSaveFile_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 545);
+            this.ClientSize = new System.Drawing.Size(1253, 545);
+            this.Controls.Add(this.btnSaveFile);
+            this.Controls.Add(this.btnOpenFile);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cmbTypesOfCipher);
             this.Controls.Add(this.label3);
@@ -182,6 +206,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbTypesOfCipher;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnOpenFile;
+        private System.Windows.Forms.Button btnSaveFile;
     }
 }
 

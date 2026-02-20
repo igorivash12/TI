@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.IO;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -60,6 +61,20 @@ namespace Lab1
             {
                 tbCipherText.Text = VigenerDencryption(tbPlainText.Text, tbKey.Text);
             }
+        }
+
+        private void btnOpenFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() == DialogResult.OK)
+                tbPlainText.Text = File.ReadAllText(ofd.FileName, Encoding.UTF8);
+        }
+
+        private void btnSaveFile_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            if (sfd.ShowDialog() == DialogResult.OK)
+                File.WriteAllText(sfd.FileName, tbCipherText.Text, Encoding.UTF8);
         }
     }
 }
