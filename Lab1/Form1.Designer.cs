@@ -1,6 +1,6 @@
 ﻿namespace Lab1
 {
-    partial class Form1
+    partial class frmMain
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -37,11 +37,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.cmbTypesOfCipher = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(645, 385);
+            this.btnClear.Location = new System.Drawing.Point(619, 385);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(170, 42);
             this.btnClear.TabIndex = 0;
@@ -51,32 +53,34 @@
             // 
             // btnDecipher
             // 
-            this.btnDecipher.Location = new System.Drawing.Point(373, 385);
+            this.btnDecipher.Location = new System.Drawing.Point(351, 385);
             this.btnDecipher.Name = "btnDecipher";
             this.btnDecipher.Size = new System.Drawing.Size(170, 42);
             this.btnDecipher.TabIndex = 1;
             this.btnDecipher.Text = "Дешифровать";
             this.btnDecipher.UseVisualStyleBackColor = true;
+            this.btnDecipher.Click += new System.EventHandler(this.btnDecipher_Click);
             // 
             // btnCipher
             // 
-            this.btnCipher.Location = new System.Drawing.Point(109, 385);
+            this.btnCipher.Location = new System.Drawing.Point(83, 385);
             this.btnCipher.Name = "btnCipher";
             this.btnCipher.Size = new System.Drawing.Size(170, 42);
             this.btnCipher.TabIndex = 2;
             this.btnCipher.Text = "Шифровать";
             this.btnCipher.UseVisualStyleBackColor = true;
+            this.btnCipher.Click += new System.EventHandler(this.btnCipher_Click);
             // 
             // tbKey
             // 
-            this.tbKey.Location = new System.Drawing.Point(109, 65);
+            this.tbKey.Location = new System.Drawing.Point(83, 323);
             this.tbKey.Name = "tbKey";
             this.tbKey.Size = new System.Drawing.Size(170, 22);
             this.tbKey.TabIndex = 3;
             // 
             // tbPlainText
             // 
-            this.tbPlainText.Location = new System.Drawing.Point(109, 157);
+            this.tbPlainText.Location = new System.Drawing.Point(83, 112);
             this.tbPlainText.Multiline = true;
             this.tbPlainText.Name = "tbPlainText";
             this.tbPlainText.Size = new System.Drawing.Size(267, 142);
@@ -84,7 +88,7 @@
             // 
             // tbCipherText
             // 
-            this.tbCipherText.Location = new System.Drawing.Point(548, 157);
+            this.tbCipherText.Location = new System.Drawing.Point(522, 112);
             this.tbCipherText.Multiline = true;
             this.tbCipherText.Name = "tbCipherText";
             this.tbCipherText.Size = new System.Drawing.Size(267, 142);
@@ -93,7 +97,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(559, 115);
+            this.label1.Location = new System.Drawing.Point(533, 70);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(156, 16);
             this.label1.TabIndex = 6;
@@ -102,7 +106,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(106, 115);
+            this.label2.Location = new System.Drawing.Point(80, 70);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(110, 16);
             this.label2.TabIndex = 7;
@@ -111,17 +115,39 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(43, 68);
+            this.label3.Location = new System.Drawing.Point(80, 304);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 16);
             this.label3.TabIndex = 8;
             this.label3.Text = "Ключ";
             // 
-            // Form1
+            // cmbTypesOfCipher
+            // 
+            this.cmbTypesOfCipher.FormattingEnabled = true;
+            this.cmbTypesOfCipher.Items.AddRange(new object[] {
+            "Шифр Виженера (Рус.)",
+            "Столбцовый метод (Англ.)"});
+            this.cmbTypesOfCipher.Location = new System.Drawing.Point(536, 321);
+            this.cmbTypesOfCipher.Name = "cmbTypesOfCipher";
+            this.cmbTypesOfCipher.Size = new System.Drawing.Size(253, 24);
+            this.cmbTypesOfCipher.TabIndex = 9;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(533, 302);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(118, 16);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Тип шифрования";
+            // 
+            // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(882, 480);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.cmbTypesOfCipher);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -132,9 +158,10 @@
             this.Controls.Add(this.btnDecipher);
             this.Controls.Add(this.btnClear);
             this.Location = new System.Drawing.Point(200, 200);
-            this.Name = "Form1";
+            this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "CryptoApp";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -151,6 +178,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cmbTypesOfCipher;
+        private System.Windows.Forms.Label label4;
     }
 }
 

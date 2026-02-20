@@ -10,17 +10,56 @@ using System.Windows.Forms;
 
 namespace Lab1
 {
-    public partial class Form1 : Form
+    public partial class frmMain : Form
     {
-        public Form1()
+        public frmMain()
         {
             InitializeComponent();
+        }
+
+        private string VigenerEncryption(string text, string key)
+        {
+            var cipher = new VigenereCipher("АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ");
+            text = text.ToUpper();
+            key = key.ToUpper();
+            string cipherText = cipher.Encrypt(text, key);
+            return cipherText;
+        }
+
+        private string VigenerDencryption(string text, string key)
+        {
+            var cipher = new VigenereCipher("АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ");
+            text = text.ToUpper();
+            key = key.ToUpper();
+            string cipherText = cipher.Decrypt(text, key);
+            return cipherText;
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
             tbPlainText.Text = string.Empty;
             tbCipherText.Text = string.Empty;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            cmbTypesOfCipher.SelectedIndex = 0;
+        }
+
+        private void btnCipher_Click(object sender, EventArgs e)
+        {
+            if (cmbTypesOfCipher.SelectedIndex == 0)
+            {   
+                tbCipherText.Text = VigenerEncryption(tbPlainText.Text, tbKey.Text);
+            }
+        }
+
+        private void btnDecipher_Click(object sender, EventArgs e)
+        {
+            if (cmbTypesOfCipher.SelectedIndex == 0)
+            {
+                tbCipherText.Text = VigenerDencryption(tbPlainText.Text, tbKey.Text);
+            }
         }
     }
 }
