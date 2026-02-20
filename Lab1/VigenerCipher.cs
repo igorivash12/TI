@@ -17,17 +17,22 @@ namespace Lab1
             letters = string.IsNullOrEmpty(alphabet) ? defaultAlphabet : alphabet;
         }
 
-        private void ValidateKey(string key)
+        private bool IsValidKey(string key)
         {
             if (string.IsNullOrEmpty(key))
             {
                 MessageBox.Show("Ключ не может быть пустым!");
+                return false;
             }
 
             char invalidChar = key.FirstOrDefault(c => !letters.Contains(c));
 
             if (invalidChar != default(char))
+            {
                 MessageBox.Show($"'{invalidChar}' - недопустимый символ в ключе!");
+                return false;
+            }
+            return true;
         }
 
         //генерация повторяющегося пароля
@@ -44,28 +49,29 @@ namespace Lab1
 
         private string Vigenere(string text, string key, bool encrypting = true)
         {
-            ValidateKey(key);
-            var longKey = GetRepeatKey(key, text.Length);
             var result = new StringBuilder();
-            var q = letters.Length;
-
-            for (int i = 0; i < text.Length; i++)
+            if (IsValidKey(key))
             {
-                var letterIndex = letters.IndexOf(text[i]);
-                var codeIndex = letters.IndexOf(longKey[i]);
+                var longKey = GetRepeatKey(key, text.Length);                
+                var q = letters.Length;
 
-                if (letterIndex < 0)
+                for (int i = 0; i < text.Length; i++)
                 {
-                    result.Append(text[i]);
-                }
-                else
-                {
-                    int shift = encrypting ? codeIndex : -codeIndex;
-                    int newIndex = (q + letterIndex + shift) % q;
-                    result.Append(letters[newIndex]);
-                }
+                    var letterIndex = letters.IndexOf(text[i]);
+                    var codeIndex = letters.IndexOf(longKey[i]);
+
+                    if (letterIndex < 0)
+                    {
+                        result.Append(text[i]);
+                    }
+                    else
+                    {
+                        int shift = encrypting ? codeIndex : -codeIndex;
+                        int newIndex = (q + letterIndex + shift) % q;
+                        result.Append(letters[newIndex]);
+                    }
+                }                
             }
-
             return result.ToString();
         }
 
