@@ -44,31 +44,32 @@
             this.lblKey2 = new System.Windows.Forms.Label();
             this.tbKey2 = new System.Windows.Forms.TextBox();
             this.cbAdvanced = new System.Windows.Forms.CheckBox();
+            this.btnChange = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(83, 456);
+            this.btnClear.Location = new System.Drawing.Point(38, 456);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(170, 42);
-            this.btnClear.TabIndex = 0;
+            this.btnClear.TabIndex = 6;
             this.btnClear.Text = "Очистить";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnDecipher
             // 
-            this.btnDecipher.Location = new System.Drawing.Point(556, 456);
+            this.btnDecipher.Location = new System.Drawing.Point(499, 456);
             this.btnDecipher.Name = "btnDecipher";
             this.btnDecipher.Size = new System.Drawing.Size(170, 42);
-            this.btnDecipher.TabIndex = 1;
+            this.btnDecipher.TabIndex = 3;
             this.btnDecipher.Text = "Дешифровать";
             this.btnDecipher.UseVisualStyleBackColor = true;
             this.btnDecipher.Click += new System.EventHandler(this.btnDecipher_Click);
             // 
             // btnCipher
             // 
-            this.btnCipher.Location = new System.Drawing.Point(355, 456);
+            this.btnCipher.Location = new System.Drawing.Point(281, 456);
             this.btnCipher.Name = "btnCipher";
             this.btnCipher.Size = new System.Drawing.Size(170, 42);
             this.btnCipher.TabIndex = 2;
@@ -78,19 +79,19 @@
             // 
             // tbKey
             // 
-            this.tbKey.Location = new System.Drawing.Point(83, 394);
+            this.tbKey.Location = new System.Drawing.Point(38, 394);
             this.tbKey.Name = "tbKey";
             this.tbKey.Size = new System.Drawing.Size(170, 22);
-            this.tbKey.TabIndex = 3;
+            this.tbKey.TabIndex = 1;
             // 
             // tbPlainText
             // 
-            this.tbPlainText.Location = new System.Drawing.Point(83, 112);
+            this.tbPlainText.Location = new System.Drawing.Point(38, 112);
             this.tbPlainText.Multiline = true;
             this.tbPlainText.Name = "tbPlainText";
             this.tbPlainText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tbPlainText.Size = new System.Drawing.Size(490, 213);
-            this.tbPlainText.TabIndex = 4;
+            this.tbPlainText.TabIndex = 0;
             // 
             // tbCipherText
             // 
@@ -114,7 +115,7 @@
             // lblPlainText
             // 
             this.lblPlainText.AutoSize = true;
-            this.lblPlainText.Location = new System.Drawing.Point(80, 70);
+            this.lblPlainText.Location = new System.Drawing.Point(35, 70);
             this.lblPlainText.Name = "lblPlainText";
             this.lblPlainText.Size = new System.Drawing.Size(110, 16);
             this.lblPlainText.TabIndex = 7;
@@ -123,7 +124,7 @@
             // lblKey
             // 
             this.lblKey.AutoSize = true;
-            this.lblKey.Location = new System.Drawing.Point(80, 375);
+            this.lblKey.Location = new System.Drawing.Point(35, 375);
             this.lblKey.Name = "lblKey";
             this.lblKey.Size = new System.Drawing.Size(41, 16);
             this.lblKey.TabIndex = 8;
@@ -155,7 +156,7 @@
             this.btnOpenFile.Location = new System.Drawing.Point(832, 456);
             this.btnOpenFile.Name = "btnOpenFile";
             this.btnOpenFile.Size = new System.Drawing.Size(170, 42);
-            this.btnOpenFile.TabIndex = 11;
+            this.btnOpenFile.TabIndex = 4;
             this.btnOpenFile.Text = "Открыть файл";
             this.btnOpenFile.UseVisualStyleBackColor = true;
             this.btnOpenFile.Click += new System.EventHandler(this.btnOpenFile_Click);
@@ -165,7 +166,7 @@
             this.btnSaveFile.Location = new System.Drawing.Point(1033, 456);
             this.btnSaveFile.Name = "btnSaveFile";
             this.btnSaveFile.Size = new System.Drawing.Size(170, 42);
-            this.btnSaveFile.TabIndex = 12;
+            this.btnSaveFile.TabIndex = 5;
             this.btnSaveFile.Text = "Сохранить";
             this.btnSaveFile.UseVisualStyleBackColor = true;
             this.btnSaveFile.Click += new System.EventHandler(this.btnSaveFile_Click);
@@ -173,7 +174,7 @@
             // lblKey2
             // 
             this.lblKey2.AutoSize = true;
-            this.lblKey2.Location = new System.Drawing.Point(311, 377);
+            this.lblKey2.Location = new System.Drawing.Point(278, 375);
             this.lblKey2.Name = "lblKey2";
             this.lblKey2.Size = new System.Drawing.Size(51, 16);
             this.lblKey2.TabIndex = 14;
@@ -182,10 +183,10 @@
             // 
             // tbKey2
             // 
-            this.tbKey2.Location = new System.Drawing.Point(314, 396);
+            this.tbKey2.Location = new System.Drawing.Point(281, 394);
             this.tbKey2.Name = "tbKey2";
             this.tbKey2.Size = new System.Drawing.Size(170, 22);
-            this.tbKey2.TabIndex = 13;
+            this.tbKey2.TabIndex = 5;
             this.tbKey2.Visible = false;
             // 
             // cbAdvanced
@@ -200,11 +201,22 @@
             this.cbAdvanced.Visible = false;
             this.cbAdvanced.CheckStateChanged += new System.EventHandler(this.cbAdvanced_CheckStateChanged);
             // 
+            // btnChange
+            // 
+            this.btnChange.Location = new System.Drawing.Point(574, 213);
+            this.btnChange.Name = "btnChange";
+            this.btnChange.Size = new System.Drawing.Size(75, 23);
+            this.btnChange.TabIndex = 16;
+            this.btnChange.Text = "<-->";
+            this.btnChange.UseVisualStyleBackColor = true;
+            this.btnChange.Click += new System.EventHandler(this.btnChange_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1253, 545);
+            this.Controls.Add(this.btnChange);
             this.Controls.Add(this.cbAdvanced);
             this.Controls.Add(this.lblKey2);
             this.Controls.Add(this.tbKey2);
@@ -249,6 +261,7 @@
         private System.Windows.Forms.Label lblKey2;
         private System.Windows.Forms.TextBox tbKey2;
         private System.Windows.Forms.CheckBox cbAdvanced;
+        private System.Windows.Forms.Button btnChange;
     }
 }
 

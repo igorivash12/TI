@@ -145,5 +145,11 @@ namespace Lab1
                 lblKey2.Visible = false;
             }
         }
+
+        private void btnChange_Click(object sender, EventArgs e)
+        {
+            tbPlainText.Text = tbCipherText.Text;
+            tbCipherText.Clear();
+        }
     }
 }
