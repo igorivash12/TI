@@ -34,13 +34,16 @@
             this.tbKey = new System.Windows.Forms.TextBox();
             this.tbPlainText = new System.Windows.Forms.TextBox();
             this.tbCipherText = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblCipherText = new System.Windows.Forms.Label();
+            this.lblPlainText = new System.Windows.Forms.Label();
+            this.lblKey = new System.Windows.Forms.Label();
             this.cmbTypesOfCipher = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnOpenFile = new System.Windows.Forms.Button();
             this.btnSaveFile = new System.Windows.Forms.Button();
+            this.lblKey2 = new System.Windows.Forms.Label();
+            this.tbKey2 = new System.Windows.Forms.TextBox();
+            this.cbAdvanced = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnClear
@@ -91,39 +94,40 @@
             // 
             // tbCipherText
             // 
-            this.tbCipherText.Location = new System.Drawing.Point(713, 112);
+            this.tbCipherText.Location = new System.Drawing.Point(704, 112);
             this.tbCipherText.Multiline = true;
             this.tbCipherText.Name = "tbCipherText";
+            this.tbCipherText.ReadOnly = true;
             this.tbCipherText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tbCipherText.Size = new System.Drawing.Size(490, 213);
             this.tbCipherText.TabIndex = 5;
             // 
-            // label1
+            // lblCipherText
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(710, 70);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(156, 16);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Зашифрованный текст";
+            this.lblCipherText.AutoSize = true;
+            this.lblCipherText.Location = new System.Drawing.Point(701, 70);
+            this.lblCipherText.Name = "lblCipherText";
+            this.lblCipherText.Size = new System.Drawing.Size(156, 16);
+            this.lblCipherText.TabIndex = 6;
+            this.lblCipherText.Text = "Зашифрованный текст";
             // 
-            // label2
+            // lblPlainText
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(80, 70);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(110, 16);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Исходный текст";
+            this.lblPlainText.AutoSize = true;
+            this.lblPlainText.Location = new System.Drawing.Point(80, 70);
+            this.lblPlainText.Name = "lblPlainText";
+            this.lblPlainText.Size = new System.Drawing.Size(110, 16);
+            this.lblPlainText.TabIndex = 7;
+            this.lblPlainText.Text = "Исходный текст";
             // 
-            // label3
+            // lblKey
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(80, 375);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 16);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Ключ";
+            this.lblKey.AutoSize = true;
+            this.lblKey.Location = new System.Drawing.Point(80, 375);
+            this.lblKey.Name = "lblKey";
+            this.lblKey.Size = new System.Drawing.Size(41, 16);
+            this.lblKey.TabIndex = 8;
+            this.lblKey.Text = "Ключ";
             // 
             // cmbTypesOfCipher
             // 
@@ -131,15 +135,16 @@
             this.cmbTypesOfCipher.Items.AddRange(new object[] {
             "Шифр Виженера (Рус.)",
             "Столбцовый метод (Англ.)"});
-            this.cmbTypesOfCipher.Location = new System.Drawing.Point(320, 394);
+            this.cmbTypesOfCipher.Location = new System.Drawing.Point(706, 394);
             this.cmbTypesOfCipher.Name = "cmbTypesOfCipher";
             this.cmbTypesOfCipher.Size = new System.Drawing.Size(253, 24);
             this.cmbTypesOfCipher.TabIndex = 9;
+            this.cmbTypesOfCipher.SelectedIndexChanged += new System.EventHandler(this.cmbTypesOfCipher_SelectedIndexChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(317, 375);
+            this.label4.Location = new System.Drawing.Point(703, 375);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(118, 16);
             this.label4.TabIndex = 10;
@@ -165,18 +170,51 @@
             this.btnSaveFile.UseVisualStyleBackColor = true;
             this.btnSaveFile.Click += new System.EventHandler(this.btnSaveFile_Click);
             // 
+            // lblKey2
+            // 
+            this.lblKey2.AutoSize = true;
+            this.lblKey2.Location = new System.Drawing.Point(311, 377);
+            this.lblKey2.Name = "lblKey2";
+            this.lblKey2.Size = new System.Drawing.Size(51, 16);
+            this.lblKey2.TabIndex = 14;
+            this.lblKey2.Text = "Ключ 2";
+            this.lblKey2.Visible = false;
+            // 
+            // tbKey2
+            // 
+            this.tbKey2.Location = new System.Drawing.Point(314, 396);
+            this.tbKey2.Name = "tbKey2";
+            this.tbKey2.Size = new System.Drawing.Size(170, 22);
+            this.tbKey2.TabIndex = 13;
+            this.tbKey2.Visible = false;
+            // 
+            // cbAdvanced
+            // 
+            this.cbAdvanced.AutoSize = true;
+            this.cbAdvanced.Location = new System.Drawing.Point(999, 398);
+            this.cbAdvanced.Name = "cbAdvanced";
+            this.cbAdvanced.Size = new System.Drawing.Size(112, 20);
+            this.cbAdvanced.TabIndex = 15;
+            this.cbAdvanced.Text = "Улучшенный";
+            this.cbAdvanced.UseVisualStyleBackColor = true;
+            this.cbAdvanced.Visible = false;
+            this.cbAdvanced.CheckStateChanged += new System.EventHandler(this.cbAdvanced_CheckStateChanged);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1253, 545);
+            this.Controls.Add(this.cbAdvanced);
+            this.Controls.Add(this.lblKey2);
+            this.Controls.Add(this.tbKey2);
             this.Controls.Add(this.btnSaveFile);
             this.Controls.Add(this.btnOpenFile);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cmbTypesOfCipher);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblKey);
+            this.Controls.Add(this.lblPlainText);
+            this.Controls.Add(this.lblCipherText);
             this.Controls.Add(this.tbCipherText);
             this.Controls.Add(this.tbPlainText);
             this.Controls.Add(this.tbKey);
@@ -201,13 +239,16 @@
         private System.Windows.Forms.TextBox tbKey;
         private System.Windows.Forms.TextBox tbPlainText;
         private System.Windows.Forms.TextBox tbCipherText;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblCipherText;
+        private System.Windows.Forms.Label lblPlainText;
+        private System.Windows.Forms.Label lblKey;
         private System.Windows.Forms.ComboBox cmbTypesOfCipher;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnOpenFile;
         private System.Windows.Forms.Button btnSaveFile;
+        private System.Windows.Forms.Label lblKey2;
+        private System.Windows.Forms.TextBox tbKey2;
+        private System.Windows.Forms.CheckBox cbAdvanced;
     }
 }
 

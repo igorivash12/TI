@@ -36,6 +36,25 @@ namespace Lab1
             return cipherText;
         }
 
+        private string ColumnarEncryption(string text, string key)
+        {
+            var cipher = new ColumnarCipher();
+            text = text.ToUpper();
+            key = key.ToUpper();
+            string cipherText = cipher.Encrypt(text, key);
+            return cipherText;
+        }
+
+        private string ColumnarDecryption(string text, string key)
+        {
+            var cipher = new ColumnarCipher();
+            text = text.ToUpper();
+            key = key.ToUpper();
+            string cipherText = cipher.Decrypt(text, key);
+            return cipherText;
+        }
+
+        // ----------------------------------------------------------------------
         private void btnClear_Click(object sender, EventArgs e)
         {
             tbPlainText.Text = string.Empty;
@@ -53,6 +72,18 @@ namespace Lab1
             {   
                 tbCipherText.Text = VigenerEncryption(tbPlainText.Text, tbKey.Text);
             }
+            else if (cmbTypesOfCipher.SelectedIndex == 1)
+            {
+                if (cbAdvanced.Checked == true)
+                {
+                    tbCipherText.Text = ColumnarEncryption(tbPlainText.Text, tbKey.Text);
+                    tbCipherText.Text = ColumnarEncryption(tbPlainText.Text, tbKey2.Text);
+                }
+                else
+                {
+                    tbCipherText.Text = ColumnarEncryption(tbPlainText.Text, tbKey.Text);
+                }
+            }
         }
 
         private void btnDecipher_Click(object sender, EventArgs e)
@@ -60,6 +91,18 @@ namespace Lab1
             if (cmbTypesOfCipher.SelectedIndex == 0)
             {
                 tbCipherText.Text = VigenerDencryption(tbPlainText.Text, tbKey.Text);
+            }
+            else if ( cmbTypesOfCipher.SelectedIndex == 1)
+            {
+                if(cbAdvanced.Checked == true)
+                {
+                    tbCipherText.Text = ColumnarDecryption(tbPlainText.Text, tbKey.Text);
+                    tbCipherText.Text = ColumnarDecryption(tbPlainText.Text, tbKey2.Text);
+                }
+                else
+                {
+                    tbCipherText.Text = ColumnarDecryption(tbPlainText.Text, tbKey.Text);
+                }
             }
         }
 
@@ -75,6 +118,32 @@ namespace Lab1
             SaveFileDialog sfd = new SaveFileDialog();
             if (sfd.ShowDialog() == DialogResult.OK)
                 File.WriteAllText(sfd.FileName, tbCipherText.Text, Encoding.UTF8);
+        }
+
+        private void cmbTypesOfCipher_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbTypesOfCipher.SelectedIndex == 1)
+            {
+                cbAdvanced.Visible = true;
+            } else 
+            { 
+                cbAdvanced.Visible = false;
+                cbAdvanced.Checked = false;
+            }
+        }
+
+        private void cbAdvanced_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (cbAdvanced.Checked == true)
+            { 
+                tbKey2.Visible = true;
+                lblKey2.Visible = true;
+            }
+            else
+            {
+                tbKey2.Visible = false;
+                lblKey2.Visible = false;
+            }
         }
     }
 }
