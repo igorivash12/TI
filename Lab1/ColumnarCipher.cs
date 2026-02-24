@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Lab1
 {
     public class ColumnarCipher
     {
+        readonly string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         private int[] GetKeyOrder(string key)
         {
             return key
@@ -20,72 +22,95 @@ namespace Lab1
                 .ToArray();
         }
 
-        public string Encrypt(string text, string key)
+        private bool IsValidKey(string key)
         {
-            int cols = key.Length;
-            int rows = (int)Math.Ceiling((double)text.Length / cols);
-
-            char[,] table = new char[rows, cols];
-
-            int k = 0;
-
-            for (int r = 0; r < rows; r++)
-                for (int c = 0; c < cols; c++)
-                    if (k < text.Length)
-                        table[r, c] = text[k++];
-
-            var order = GetKeyOrder(key);
-
-            var result = new StringBuilder();
-
-            for (int o = 0; o < cols; o++)
+            if (string.IsNullOrEmpty(key))
             {
-                int colIndex = Array.IndexOf(order, o);
-
-                for (int r = 0; r < rows; r++)
-                {
-                    if (table[r, colIndex] != '\0')
-                        result.Append(table[r, colIndex]);
-                }
+                MessageBox.Show("Ключ не может быть пустым!");
+                return false;
             }
 
+            char invalidChar = key.FirstOrDefault(c => !letters.Contains(c));
+
+            if (invalidChar != default(char))
+            {
+                MessageBox.Show($"'{invalidChar}' - недопустимый символ в ключе!");
+                return false;
+            }
+            return true;
+        }
+
+        public string Encrypt(string text, string key)
+        {
+            var result = new StringBuilder();
+            if (IsValidKey(key))
+            {
+                int cols = key.Length;
+                int rows = (int)Math.Ceiling((double)text.Length / cols);
+
+                char[,] table = new char[rows, cols];
+
+                int k = 0;
+
+                for (int r = 0; r < rows; r++)
+                    for (int c = 0; c < cols; c++)
+                        if (k < text.Length)
+                            table[r, c] = text[k++];
+
+                var order = GetKeyOrder(key);
+
+
+                for (int o = 0; o < cols; o++)
+                {
+                    int colIndex = Array.IndexOf(order, o);
+
+                    for (int r = 0; r < rows; r++)
+                    {
+                        if (table[r, colIndex] != '\0')
+                            result.Append(table[r, colIndex]);
+                    }
+                }
+            }
             return result.ToString();
         }
 
         public string Decrypt(string cipher, string key)
         {
-            int cols = key.Length;
-            int rows = (int)Math.Ceiling((double)cipher.Length / cols);
-
-            char[,] table = new char[rows, cols];
-
-            var order = GetKeyOrder(key);
-
-            int fullCols = cipher.Length % cols;
-            if (fullCols == 0) fullCols = cols;
-
-            int index = 0;
-
-            // заполняем столбцы правильно
-            for (int o = 0; o < cols; o++)
-            {
-                int colIndex = Array.IndexOf(order, o);
-
-                int currentColLength =
-                    colIndex < fullCols ? rows : rows - 1;
-
-                for (int r = 0; r < currentColLength; r++)
-                {
-                    table[r, colIndex] = cipher[index++];
-                }
-            }
-
             var result = new StringBuilder();
+            if (IsValidKey(key)) 
+            {
+                int cols = key.Length;
+                int rows = (int)Math.Ceiling((double)cipher.Length / cols);
 
-            for (int r = 0; r < rows; r++)
-                for (int c = 0; c < cols; c++)
-                    if (table[r, c] != '\0')
-                        result.Append(table[r, c]);
+                char[,] table = new char[rows, cols];
+
+                var order = GetKeyOrder(key);
+
+                int fullCols = cipher.Length % cols;
+                if (fullCols == 0) fullCols = cols;
+
+                int index = 0;
+
+                // заполняем столбцы правильно
+                for (int o = 0; o < cols; o++)
+                {
+                    int colIndex = Array.IndexOf(order, o);
+
+                    int currentColLength =
+                        colIndex < fullCols ? rows : rows - 1;
+
+                    for (int r = 0; r < currentColLength; r++)
+                    {
+                        table[r, colIndex] = cipher[index++];
+                    }
+                }
+
+
+                for (int r = 0; r < rows; r++)
+                    for (int c = 0; c < cols; c++)
+                        if (table[r, c] != '\0')
+                            result.Append(table[r, c]);
+            }
 
             return result.ToString();
         }

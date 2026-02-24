@@ -76,8 +76,8 @@ namespace Lab1
             {
                 if (cbAdvanced.Checked == true)
                 {
-                    tbCipherText.Text = ColumnarEncryption(tbPlainText.Text, tbKey.Text);
-                    tbCipherText.Text = ColumnarEncryption(tbPlainText.Text, tbKey2.Text);
+                    string temp = ColumnarEncryption(tbPlainText.Text, tbKey.Text);
+                    tbCipherText.Text = ColumnarEncryption(temp, tbKey2.Text);
                 }
                 else
                 {
@@ -96,8 +96,8 @@ namespace Lab1
             {
                 if(cbAdvanced.Checked == true)
                 {
-                    tbCipherText.Text = ColumnarDecryption(tbPlainText.Text, tbKey.Text);
-                    tbCipherText.Text = ColumnarDecryption(tbPlainText.Text, tbKey2.Text);
+                    string temp = ColumnarDecryption(tbPlainText.Text, tbKey2.Text);
+                    tbCipherText.Text = ColumnarDecryption(temp, tbKey.Text);
                 }
                 else
                 {
