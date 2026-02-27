@@ -19,6 +19,7 @@ namespace Lab1
 
         private bool IsValidKey(string key)
         {
+            key.ToUpper();
             if (string.IsNullOrEmpty(key))
             {
                 MessageBox.Show("Ключ не может быть пустым!");
@@ -36,42 +37,64 @@ namespace Lab1
         }
 
         //генерация повторяющегося пароля
-        private string GetRepeatKey(string s, int n)
-        {
-            var p = s;
-            while (p.Length < n)
-            {
-                p += p;
-            }
+        //private string GetRepeatKey(string s, int n)
+        //{
+        //    var p = s;
+        //    while (p.Length < n)
+        //    {
+        //        p += p;
+        //    }
 
-            return p.Substring(0, n);
-        }
+        //    return p.Substring(0, n);
+        //}
 
         private string Vigenere(string text, string key, bool encrypting = true)
         {
             var result = new StringBuilder();
-            if (IsValidKey(key))
+            if (!IsValidKey(key))
+                return result.ToString();
+
+            text = text.ToUpper();
+            key = key.ToUpper();
+
+            var q = letters.Length;
+
+            // для автоключа
+            StringBuilder fullKey = new StringBuilder(key);
+
+            for (int i = 0; i < text.Length; i++)
             {
-                var longKey = GetRepeatKey(key, text.Length);                
-                var q = letters.Length;
+                var letterIndex = letters.IndexOf(text[i]);
 
-                for (int i = 0; i < text.Length; i++)
+                if (letterIndex < 0)
                 {
-                    var letterIndex = letters.IndexOf(text[i]);
-                    var codeIndex = letters.IndexOf(longKey[i]);
+                    result.Append(text[i]);
+                    continue;
+                }
 
-                    if (letterIndex < 0)
-                    {
-                        result.Append(text[i]);
-                    }
+                char keyChar;
+
+                if (i < key.Length)
+                {
+                    keyChar = fullKey[i];
+                }
+                else
+                {
+                    if (encrypting)
+                        keyChar = text[i - key.Length];          // при шифровании берём из открытого текста
                     else
-                    {
-                        int shift = encrypting ? codeIndex : -codeIndex;
-                        int newIndex = (q + letterIndex + shift) % q;
-                        result.Append(letters[newIndex]);
-                    }
-                }                
+                        keyChar = result[i - key.Length];        // при расшифровке берём уже расшифрованный символ
+                }
+
+                var codeIndex = letters.IndexOf(keyChar);
+
+                int shift = encrypting ? codeIndex : -codeIndex;
+                int newIndex = (q + letterIndex + shift) % q;
+
+                char newChar = letters[newIndex];
+                result.Append(newChar);
             }
+
             return result.ToString();
         }
 

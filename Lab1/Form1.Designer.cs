@@ -132,6 +132,7 @@
             // 
             // cmbTypesOfCipher
             // 
+            this.cmbTypesOfCipher.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTypesOfCipher.FormattingEnabled = true;
             this.cmbTypesOfCipher.Items.AddRange(new object[] {
             "Шифр Виженера (Рус.)",

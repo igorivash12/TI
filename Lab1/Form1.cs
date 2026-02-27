@@ -21,7 +21,7 @@ namespace Lab1
         private string VigenerEncryption(string text, string key)
         {
             var cipher = new VigenereCipher("АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ");
-            text = text.ToUpper();
+            //text = text.ToUpper();
             key = key.ToUpper();
             string cipherText = cipher.Encrypt(text, key);
             return cipherText;
@@ -30,7 +30,7 @@ namespace Lab1
         private string VigenerDencryption(string text, string key)
         {
             var cipher = new VigenereCipher("АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ");
-            text = text.ToUpper();
+            //text = text.ToUpper();
             key = key.ToUpper();
             string cipherText = cipher.Decrypt(text, key);
             return cipherText;
