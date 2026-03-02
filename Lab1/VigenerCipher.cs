@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Lab1
 {
@@ -17,92 +14,68 @@ namespace Lab1
             letters = string.IsNullOrEmpty(alphabet) ? defaultAlphabet : alphabet;
         }
 
-        private bool IsValidKey(string key)
+        // Очистка строки: удаление всех символов вне алфавита
+        private string CleanString(string input)
         {
-            key.ToUpper();
-            if (string.IsNullOrEmpty(key))
-            {
-                MessageBox.Show("Ключ не может быть пустым!");
-                return false;
-            }
-
-            char invalidChar = key.FirstOrDefault(c => !letters.Contains(c));
-
-            if (invalidChar != default(char))
-            {
-                MessageBox.Show($"'{invalidChar}' - недопустимый символ в ключе!");
-                return false;
-            }
-            return true;
+            return new string(
+                input
+                    .ToUpper()
+                    .Where(c => letters.Contains(c))
+                    .ToArray()
+            );
         }
 
-        //генерация повторяющегося пароля
-        //private string GetRepeatKey(string s, int n)
-        //{
-        //    var p = s;
-        //    while (p.Length < n)
-        //    {
-        //        p += p;
-        //    }
+        // Проверка ключа (без сообщений об ошибке)
+        private bool IsValidKey(ref string key)
+        {
+            key = CleanString(key); // удаляем недопустимые символы
 
-        //    return p.Substring(0, n);
-        //}
+            return !string.IsNullOrEmpty(key);
+        }
 
         private string Vigenere(string text, string key, bool encrypting = true)
         {
             var result = new StringBuilder();
-            if (!IsValidKey(key))
-                return result.ToString();
 
-            text = text.ToUpper();
-            key = key.ToUpper();
+            if (!IsValidKey(ref key))
+                return result.ToString(); // просто вернуть пустую строку
 
-            var q = letters.Length;
+            text = CleanString(text); // очищаем текст полностью
 
-            // для автоключа
-            StringBuilder fullKey = new StringBuilder(key);
+            int q = letters.Length;
 
             for (int i = 0; i < text.Length; i++)
             {
-                var letterIndex = letters.IndexOf(text[i]);
-
-                if (letterIndex < 0)
-                {
-                    result.Append(text[i]);
-                    continue;
-                }
+                int letterIndex = letters.IndexOf(text[i]);
 
                 char keyChar;
 
                 if (i < key.Length)
                 {
-                    keyChar = fullKey[i];
+                    keyChar = key[i];
                 }
                 else
                 {
                     if (encrypting)
-                        keyChar = text[i - key.Length];          // при шифровании берём из открытого текста
+                        keyChar = text[i - key.Length];      // автоключ из открытого текста
                     else
-                        keyChar = result[i - key.Length];        // при расшифровке берём уже расшифрованный символ
+                        keyChar = result[i - key.Length];    // автоключ из расшифрованного текста
                 }
 
-                var codeIndex = letters.IndexOf(keyChar);
+                int codeIndex = letters.IndexOf(keyChar);
 
                 int shift = encrypting ? codeIndex : -codeIndex;
                 int newIndex = (q + letterIndex + shift) % q;
 
-                char newChar = letters[newIndex];
-                result.Append(newChar);
+                result.Append(letters[newIndex]);
             }
 
-            return result.ToString();
+            return result.ToString(); // всегда сплошная строка
         }
 
-        //шифрование текста
         public string Encrypt(string plainMessage, string password)
             => Vigenere(plainMessage, password);
 
-        //дешифрование текста
         public string Decrypt(string encryptedMessage, string password)
             => Vigenere(encryptedMessage, password, false);
     }
