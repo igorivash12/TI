@@ -74,15 +74,7 @@ namespace Lab1
             }
             else if (cmbTypesOfCipher.SelectedIndex == 1)
             {
-                if (cbAdvanced.Checked == true)
-                {
-                    string temp = ColumnarEncryption(tbPlainText.Text, tbKey.Text);
-                    tbCipherText.Text = ColumnarEncryption(temp, tbKey2.Text);
-                }
-                else
-                {
-                    tbCipherText.Text = ColumnarEncryption(tbPlainText.Text, tbKey.Text);
-                }
+                tbCipherText.Text = ColumnarEncryption(tbPlainText.Text, tbKey.Text);
             }
         }
 
@@ -94,15 +86,7 @@ namespace Lab1
             }
             else if ( cmbTypesOfCipher.SelectedIndex == 1)
             {
-                if(cbAdvanced.Checked == true)
-                {
-                    string temp = ColumnarDecryption(tbPlainText.Text, tbKey2.Text);
-                    tbCipherText.Text = ColumnarDecryption(temp, tbKey.Text);
-                }
-                else
-                {
-                    tbCipherText.Text = ColumnarDecryption(tbPlainText.Text, tbKey.Text);
-                }
+                tbCipherText.Text = ColumnarDecryption(tbPlainText.Text, tbKey.Text);
             }
         }
 
@@ -120,31 +104,6 @@ namespace Lab1
                 File.WriteAllText(sfd.FileName, tbCipherText.Text, Encoding.UTF8);
         }
 
-        private void cmbTypesOfCipher_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbTypesOfCipher.SelectedIndex == 1)
-            {
-                cbAdvanced.Visible = true;
-            } else 
-            { 
-                cbAdvanced.Visible = false;
-                cbAdvanced.Checked = false;
-            }
-        }
-
-        private void cbAdvanced_CheckStateChanged(object sender, EventArgs e)
-        {
-            if (cbAdvanced.Checked == true)
-            { 
-                tbKey2.Visible = true;
-                lblKey2.Visible = true;
-            }
-            else
-            {
-                tbKey2.Visible = false;
-                lblKey2.Visible = false;
-            }
-        }
 
         private void btnChange_Click(object sender, EventArgs e)
         {

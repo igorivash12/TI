@@ -14,15 +14,22 @@ namespace Lab1
             letters = string.IsNullOrEmpty(alphabet) ? defaultAlphabet : alphabet;
         }
 
-        // Очистка строки: удаление всех символов вне алфавита
+        // Очистка строки от всех символов вне алфавита
         private string CleanString(string input)
         {
-            return new string(
-                input
-                    .ToUpper()
-                    .Where(c => letters.Contains(c))
-                    .ToArray()
-            );
+            StringBuilder result = new StringBuilder();
+
+            input = input.ToUpper();
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (letters.IndexOf(input[i]) >= 0)
+                {
+                    result.Append(input[i]);
+                }
+            }
+
+            return result.ToString();
         }
 
         // Проверка ключа (без сообщений об ошибке)

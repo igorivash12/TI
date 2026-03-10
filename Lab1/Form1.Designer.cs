@@ -41,9 +41,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnOpenFile = new System.Windows.Forms.Button();
             this.btnSaveFile = new System.Windows.Forms.Button();
-            this.lblKey2 = new System.Windows.Forms.Label();
-            this.tbKey2 = new System.Windows.Forms.TextBox();
-            this.cbAdvanced = new System.Windows.Forms.CheckBox();
             this.btnChange = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -141,7 +138,6 @@
             this.cmbTypesOfCipher.Name = "cmbTypesOfCipher";
             this.cmbTypesOfCipher.Size = new System.Drawing.Size(253, 24);
             this.cmbTypesOfCipher.TabIndex = 9;
-            this.cmbTypesOfCipher.SelectedIndexChanged += new System.EventHandler(this.cmbTypesOfCipher_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -172,36 +168,6 @@
             this.btnSaveFile.UseVisualStyleBackColor = true;
             this.btnSaveFile.Click += new System.EventHandler(this.btnSaveFile_Click);
             // 
-            // lblKey2
-            // 
-            this.lblKey2.AutoSize = true;
-            this.lblKey2.Location = new System.Drawing.Point(278, 375);
-            this.lblKey2.Name = "lblKey2";
-            this.lblKey2.Size = new System.Drawing.Size(51, 16);
-            this.lblKey2.TabIndex = 14;
-            this.lblKey2.Text = "Ключ 2";
-            this.lblKey2.Visible = false;
-            // 
-            // tbKey2
-            // 
-            this.tbKey2.Location = new System.Drawing.Point(281, 394);
-            this.tbKey2.Name = "tbKey2";
-            this.tbKey2.Size = new System.Drawing.Size(170, 22);
-            this.tbKey2.TabIndex = 5;
-            this.tbKey2.Visible = false;
-            // 
-            // cbAdvanced
-            // 
-            this.cbAdvanced.AutoSize = true;
-            this.cbAdvanced.Location = new System.Drawing.Point(999, 398);
-            this.cbAdvanced.Name = "cbAdvanced";
-            this.cbAdvanced.Size = new System.Drawing.Size(112, 20);
-            this.cbAdvanced.TabIndex = 15;
-            this.cbAdvanced.Text = "Улучшенный";
-            this.cbAdvanced.UseVisualStyleBackColor = true;
-            this.cbAdvanced.Visible = false;
-            this.cbAdvanced.CheckStateChanged += new System.EventHandler(this.cbAdvanced_CheckStateChanged);
-            // 
             // btnChange
             // 
             this.btnChange.Location = new System.Drawing.Point(574, 213);
@@ -218,9 +184,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1253, 545);
             this.Controls.Add(this.btnChange);
-            this.Controls.Add(this.cbAdvanced);
-            this.Controls.Add(this.lblKey2);
-            this.Controls.Add(this.tbKey2);
             this.Controls.Add(this.btnSaveFile);
             this.Controls.Add(this.btnOpenFile);
             this.Controls.Add(this.label4);
@@ -261,9 +224,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnOpenFile;
         private System.Windows.Forms.Button btnSaveFile;
-        private System.Windows.Forms.Label lblKey2;
-        private System.Windows.Forms.TextBox tbKey2;
-        private System.Windows.Forms.CheckBox cbAdvanced;
         private System.Windows.Forms.Button btnChange;
     }
 }
