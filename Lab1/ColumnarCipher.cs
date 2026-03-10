@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Text;
+using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Lab1
 {
@@ -62,7 +64,17 @@ namespace Lab1
         {
             text = Clean(text);
             key = Clean(key);
-            if (key.Length == 0) return text;
+            if (key.Length == 0)
+            {
+                MessageBox.Show("Ключ должен содержать английские буквы!");
+                return "";
+            }
+            
+            if (text.Length == 0)
+            {
+                MessageBox.Show("Текст не содержит английских букв!");
+                return "";
+            }
 
             int cols = key.Length;
             int[] order = GetKeyOrder(key);
@@ -111,7 +123,17 @@ namespace Lab1
         {
             cipher = Clean(cipher);
             key = Clean(key);
-            if (key.Length == 0) return cipher;
+            if (key.Length == 0)
+            {
+                MessageBox.Show("Ключ должен содержать английские буквы!");
+                return "";
+            }
+
+            if (cipher.Length == 0)
+            {
+                MessageBox.Show("Текст не содержит английских букв!");
+                return "";
+            }
 
             int cols = key.Length;
             int[] order = GetKeyOrder(key);

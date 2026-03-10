@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Lab1
 {
@@ -45,10 +46,17 @@ namespace Lab1
             var result = new StringBuilder();
 
             if (!IsValidKey(ref key))
-                return result.ToString(); // просто вернуть пустую строку
+            {
+                MessageBox.Show("Ключ должен содержать русские буквы!");
+                return "";
+            } // просто вернуть пустую строку
 
             text = CleanString(text); // очищаем текст полностью
-
+            if (text.Length == 0)
+            {
+                MessageBox.Show("Текст не содержит русских букв!");
+                return "";
+            }
             int q = letters.Length;
 
             for (int i = 0; i < text.Length; i++)
